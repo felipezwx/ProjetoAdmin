@@ -1,0 +1,707 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html, body{
+    width: 100%;
+    overflow-x: hidden;
+}
+
+header {
+    width: 100%;
+    background-color: #FFF;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+.topo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 80px;
+    border-bottom: 1px solid #CCC;
+    gap: 20px;
+}
+
+.logo img{
+    width: 140px;
+    display: block;
+}
+
+.busca {
+    display: flex;
+    align-items: center;
+    background-color: #f2f2f2;
+    border: 1px solid #999;
+    border-radius: 2px;
+    padding: 8px 15px;
+    width: 100%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: 15px;
+}
+
+.busca input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font-size: 14px;
+}
+
+.busca i {
+    color: #000;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.busca button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+}
+
+.busca button i {
+    color: #000;
+    font-size: 16px;
+}
+
+.icones {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icones i {
+    font-size: 22px;
+    color: #000;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.icones i:hover{
+    color: #ff6600;
+}
+
+nav {
+    padding: 15px 5%;
+    background-color: #FFF;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ff6600;
+}
+
+.area-carrossel{
+    width: 100%;
+    display: flex;
+    justify-content: center;;
+    margin-top: 120px;
+    overflow: hidden;
+}
+
+.carrossel{
+    width: 100vw;
+    height: 500px;
+    overflow: hidden;
+    margin: auto;
+    position: relative;
+}
+
+.slides{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease;
+}
+
+.slide{
+    width: 100%;
+    min-width: 100vw;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.btn-slide{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    color: #333;
+    border: none;
+    padding: 20px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.btn-slide:hover{
+    background: rgba(255,255,255,0.2);
+}
+
+.anterior{
+    left: 10px;
+}
+
+.proximo{
+    right: 10px;
+}
+
+.raquetes h3 {
+    text-align: center;
+    margin: 60px 0 40px 0;
+    font-size: 22px;
+}
+
+.raquetes-carrossel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.raquetes-janela {
+    width: 100%;
+    max-width: 1520px;
+    overflow: hidden;
+}
+
+.raquetes-grid {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease;
+    margin: 0;
+    padding: 0;
+}
+
+.raquetes-blocos {
+    flex: 0 0 calc((100% - 80px) / 5);
+    background-color: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.raquetes-imagens {
+    text-align: center;
+    margin-bottom: 5px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.raquetes-imagens img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.raquete-nome {
+    font-size: 14px;
+    font-weight: normal;
+    color: #333;
+    margin: 0 0 15px 0;
+    line-height: 1.4;
+    min-height: 50px; 
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-align: center;
+}
+
+.raquetes-preco {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.raquetes-preco strong {
+    font-size: 20px;
+    color: #000;
+}
+
+.botao-comprar {
+    background-color: #0b2545;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+.botao-comprar:hover {
+    background-color: #134074;
+}
+
+.btn-raquete {
+    background: transparent;
+    color: #333;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+
+.roupas-masculino h3 {
+    text-align: center;
+    margin: 60px 0 40px 0;
+    font-size: 22px;
+}
+
+.roupas-masculinas-carrossel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.roupas-masculinas-janela {
+    width: 1520px;
+    overflow: hidden;
+}
+
+.roupas-masculinas-grid {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease;
+}
+
+.roupas-masculinas-blocos {
+    flex: 0 0 calc((100% - 80px) / 5);
+    background-color: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.roupas-masculinas-imagens {
+    text-align: center;
+    margin-bottom: 5px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.roupas-masculinas-imagens img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.roupa-masculina-nome {
+    font-size: 14px;
+    font-weight: normal;
+    color: #333;
+    margin: 0 0 15px 0;
+    line-height: 1.4;
+    min-height: 50px; 
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-align: center;
+}
+
+.roupa-masculina-preco {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.roupa-masculina-preco strong {
+    font-size: 20px;
+    color: #000;
+}
+
+.roupas-femininas h3 {
+    text-align: center;
+    margin: 60px 0 40px 0;
+    font-size: 22px;
+}
+
+.roupas-femininas-carrossel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.roupas-femininas-janela {
+    width: 1520px;
+    overflow: hidden;
+}
+
+.roupas-femininas-grid {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease;
+}
+
+.roupas-femininas-blocos {
+    flex: 0 0 calc((100% - 80px) / 5);
+    background-color: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.roupas-femininas-imagens {
+    text-align: center;
+    margin-bottom: 5px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.roupas-femininas-imagens img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.roupas-femininas-nome {
+    font-size: 14px;
+    font-weight: normal;
+    color: #333;
+    margin: 0 0 15px 0;
+    line-height: 1.4;
+    min-height: 50px; 
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-align: center;
+}
+
+.roupas-femininas-preco {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.roupas-femininas-preco strong {
+    font-size: 20px;
+    color: #000;
+}
+
+.footer {
+    background-color: #FFF;
+    color :#000;
+    border-top: 1px solid #999;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 80px;
+}
+
+.footer p {
+    font-size: 14px;
+}
+
+.bandeiras-pagamento {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.bandeiras-pagamento img {
+    width: 60px;
+    height: 40px;
+    object-fit: contain;
+    background: #FFF;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.produto{
+    max-width: 1200px;
+    margin: 50px auto;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding: 20px;
+    margin-top: 300px;
+}
+
+.produto-imagem{
+    flex: 1;
+    text-align: center;
+}
+
+.produto-imagem img{
+    max-width: 100%;
+    width: 250px;
+    height: auto;
+}
+
+.produto-imagem-starlight img{
+    max-width: 100%;
+    width: 550px;
+    height: auto;
+}
+
+.produto-imagem-husky img{
+    max-width: 100%;
+    width: 550px;
+    height: auto;
+}
+
+.produto-imagem-macaw img{
+    max-width: 100%;
+    width: 450px;
+    height: auto;
+}
+
+
+.produto-info{
+    flex: 1;
+}
+
+.produto-info h1{
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.produto-info p{
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.produto-info h2{
+    font-size: 36px;
+    color: #0b2545;
+    margin-bottom: 20px;
+}
+
+.btn-whatsapp{
+    display: inline-block;
+    background: #25D366;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-voltar{
+    display: inline-block;
+    background: #0b2545;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contato {
+    margin-top: 140px;
+    max-width: 1200px;
+}
+
+.titulo-contato {
+    font-size: 48px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 50px;
+}
+
+.btn-enviar {
+    background-color: #0b2b57;
+    color: white;
+    border: none;
+    padding: 12px 35px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-enviar:hover {
+    background-color: #143d75;
+}
+
+.titulo-busca {
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.resultado-card {
+    border: 1px solid #000;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+.resultado-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.resultado-imagem {
+    height: 250px;
+    object-fit: contain;
+    padding: 20px;
+}
+
+.resultado-nome {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin: 20px 0;
+}
+
+.resultado-botao {
+    display: inline-block;
+    background-color: #0b2b57;
+    color: #FFF;
+    border-radius: 8px;
+    padding: 8px 12px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.resultado-botao:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.resultado-card .resultado-botao{
+    position: static;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.resultado-card .card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.produto-card{
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.produto-card:hover{
+    transform: translateY(-5px);
+}
+
+.produto-card img{
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+}
+
+.filtros{
+    margin: 30px 0;
+}
+
+.container {
+    margin-top: 200px;
+}
+
+.pagina-quem-somos {
+    margin-top: 180px;
+}
+
+.sucesso-contato {
+    margin-top: 140px;
+}
+
+@media (max-width: 768px){
+
+    .topo-header{
+        padding: 15px 20px;
+        flex-wrap: wrap;
+    }
+
+    .busca{
+        max-width: 100%;
+        margin: 10px 0;
+    }
+
+    nav ul{
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .carrossel{
+        height: 250px;
+    }
+
+    .raquetes-blocos,
+    .roupas-masculinas-blocos,
+    .roupas-femininas-blocos{
+        flex: 0 0 100%;
+    }
+
+    .produto{
+        flex-direction: column;
+        margin-top: 180px;
+        text-align: center;
+    }
+
+    .produto-info h1{
+        font-size: 24px;
+    }
+
+    .produto-info h2{
+        font-size: 28px;
+    }
+
+}
