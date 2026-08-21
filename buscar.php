@@ -40,7 +40,7 @@ include 'header.php';
                                 R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?>
                             </p>
 
-                            <a href="<?php echo $produto['link']; ?>" class="btn btn-dark resultado-botao">
+                            <a href="produto.php?id=<?php echo $produto['id_produto']; ?>" class="btn btn-dark resultado-botao">
                                 Ver Produto
                             </a>
 

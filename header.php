@@ -15,12 +15,12 @@
         <div class="topo-header">
 
             <div class="logo">
-                    <a href="/ProjetoTADSSegundoBi/index.php" title="Home" alt="Home">
-                        <img src="/ProjetoTADSSegundoBi/img/logobefitclara.jpeg" title="Logo" alt="Logo">
+                    <a href="/ProjetoAdmin/index.php" title="Home" alt="Home">
+                        <img src="/ProjetoAdmin/img/logobefitclara.jpeg" title="Logo" alt="Logo">
                     </a>
             </div>
 
-            <form class="busca" action="/ProjetoTADSSegundoBi/buscar.php" method="GET">
+            <form class="busca" action="/ProjetoAdmin/buscar.php" method="GET">
                 <input type="text" name="busca" placeholder="Buscar">
 
                 <button type="submit">

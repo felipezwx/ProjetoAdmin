@@ -50,8 +50,6 @@
         $feminino = $conn->query($sqlFeminino);
     ?>
 
-<?php include 'header.php'; ?>
-
     <?php include 'header.php'; ?>
 
     <section class="area-carrossel">
