@@ -40,9 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $sql = "INSERT INTO produtos (nome, descricao, preco, estoque, imagem, promocao) VALUES (?, ?, ?, ?, ?, ?)";
 
-        $smt = $conn->prepare($sql);
+        $stmt = $conn->prepare($sql);
 
-        $stmt->bind_param("ssdis", $nome, $descricao, $preco, $estoque, $imagem, $promocao);
+        $stmt->bind_param("ssdisi", $nome, $descricao, $preco, $estoque, $imagem, $promocao);
 
         $stmt->execute();
 
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $stmtCategoria = $conn->prepare($sqlCategoria);
 
-        $stmtCategoria->bind_param("li", $id_produto, $id_categoria);
+        $stmtCategoria->bind_param("ii", $id_produto, $id_categoria);
 
         $stmtCategoria->execute();
 
