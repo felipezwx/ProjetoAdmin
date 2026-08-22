@@ -95,5 +95,7 @@
             </div>
 
     </div>
+
+    <script src="painel.js"></script>
 </body>
 </html>
