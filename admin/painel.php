@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Administrativos</title>
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
 
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="container">
+    <nav class="navbar navbar-dark bg-dark nav-admin">
+        <div class="container container-admin py-5">
             <span class="navbar-brand m-3 h1">
                 Be Fit - Painel Administrativo
             </span>
