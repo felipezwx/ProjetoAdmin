@@ -34,6 +34,29 @@ $resultado = $conn->query($sql);
         <a href="cadastrar.php" class="btn btn-success mb-3">
             Novo Produto
         </a>
+
+        <table class="table table-striped">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Imagem</th>
+
+                    <th>Nome</th>
+
+                    <th>Preço</th>
+
+                    <th>Estoque</th>
+
+                    <th>Ações</th>
+
+                </tr>
+
+            </thead>
+
     </div>
 </body>
 </html>
