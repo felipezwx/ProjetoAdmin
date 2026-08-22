@@ -57,6 +57,24 @@ $resultado = $conn->query($sql);
 
             </thead>
 
+            <tbody> 
+
+                <?php while ($produto = $resultado->fetch_assoc()) { ?> 
+                
+                    <tr> 
+
+                        <td>
+
+                            <?php echo $produto['id_produto']; ?>
+
+                        </td>
+
+                    </tr>
+                
+                <?php } ?>
+
+            </tbody>
+
     </div>
 </body>
 </html>
