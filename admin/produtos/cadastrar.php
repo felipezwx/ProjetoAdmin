@@ -96,6 +96,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             </div>
 
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Descrição
+                </label>
+
+                <textarea name="descricao" class="form-control"></textarea>
+
+            </div>
+
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Preço
+                </label>
+
+                <input type="number" step="0.01" name="preco" class="form-control" required>
+
+            </div>
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Estoque
+            </label>
+
+            <input type="number" name="estoque" class="form-control" required>
+
+        </div>
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Caminho da imagem
+            </label>
+
+            <input type="text" name="imagem" class="form-control" placeholder="img/produto.png"
+            >
+
+        </div>
+
+
         </form>
     </div>
 </body>
