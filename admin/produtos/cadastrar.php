@@ -29,3 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($resultadoVerificar->num_rows > 0) {
 
         $mensagem = "Já existe um produto com esse nome.";
+    
+    } else {
+
+        $sql = "INSERT INTO produtos (nome, descricao, preco, estoque, imagem) VALUES (?, ?, ?, ?, ?)";
+
+        $smt = $conn->prepare($sql);
+
+        $stmt->bind_param("ssdis", $nome, $descricao, $preco, $estoque, $imagem);
+
+        $stmt->execute();
+
+    }
