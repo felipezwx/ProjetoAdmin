@@ -40,4 +40,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $stmt->execute();
 
+        $id_produto = $conn->insert_id;
+
+        $sqlCategoria = "INSERT INTO produto_categoria (id_produto, id_categoria) VALUES (?, ?)";
+
+        $stmtCategoria = $conn->prepare($sqlCategoria);
+
+        $stmtCategoria->bind_param("li", $id_produto, $id_categoria);
+
+        $stmtCategoria->execute();
+
+        header("Location: listar.php");
+
+        exit;
+
+        }
     }
+?>
