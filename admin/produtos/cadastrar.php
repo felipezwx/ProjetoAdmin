@@ -69,6 +69,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    
+    <div class="container mt-5">
+
+        <h1 class="mb-4">
+            Cadastrar Produto
+        </h1>
+
+        <?php if (isset($mensagem)) { ?>
+
+            <div class="alert alert-danger">
+
+                <?php echo $mensagem; ?>
+            </div>
+
+        <?php } ?>
+
+        <form method="POST">
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Nome
+                </label>
+
+                <input type="text" name="nome" class="form-control" required>
+            
+            </div>
+
+        </form>
+    </div>
 </body>
 </html>
