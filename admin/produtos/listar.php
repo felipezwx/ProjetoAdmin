@@ -81,6 +81,32 @@ $resultado = $conn->query($sql);
 
                         </td>
 
+                        <td>
+
+                            R$
+                            <?php echo number_format($produto['preco'], 2, ',', '.'); ?>
+
+                        </td>
+
+
+                        <td>
+                            <?php echo $produto['estoque']; ?>
+                        </td>
+
+
+                        <td>
+
+                            <a href="editar.php?id=<?php echo $produto['id_produto']; ?>" class="btn btn-warning btn-sm">
+                                Editar
+                            </a>
+
+
+                            <a href="excluir.php?id=<?php echo $produto['id_produto']; ?>" class="btn btn-danger btn-sm">
+                                Excluir
+                            </a>
+
+                        </td>
+
                     </tr>
                 
                 <?php } ?>
