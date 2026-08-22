@@ -12,7 +12,7 @@
 
     <nav class="navbar navbar-dark bg-dark">
         <div class="container">
-            <span class="navbar-brand mb-0 h1">
+            <span class="navbar-brand m-3 h1">
                 Be Fit - Painel Administrativo
             </span>
 
@@ -21,5 +21,79 @@
             </a>
         </div>
     </nav>
+
+    <div class="container py-5">
+
+        <h1 class="mb-4">
+            Painel de Controle
+        </h1>
+
+        <div class="row g-4">
+
+            <div class="col-md-3">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h4>Produtos</h4>
+
+                        <p>
+                            Cadastre, edite e exclua produtos.
+                        </p>
+
+                        <a href="produtos/listar.php" class="btn btn-dark">
+                            Gerenciar Produtos
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+             <div class="col-md-3">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h4>Categorias</h4>
+
+                        <p>
+                            Gerencie as categorias.
+                        </p>
+
+                        <button class="btn btn-secondary" disabled>
+                            Em breve
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h4>Contatos</h4>
+
+                        <p>
+                            Visualize mensagens recebidas.
+                        </p>
+
+                        <button class="btn btn-secondary" disabled>
+                            Em breve
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+             <div class="col-md-3">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h4>Relatórios</h4>
+
+                        <p>
+                            Consulte dados da loja.
+                        </p>
+
+                        <button class="btn btn-secondary" disabled>
+                            Em breve
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+    </div>
 </body>
 </html>
