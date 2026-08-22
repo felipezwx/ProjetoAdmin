@@ -15,6 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $imagem = $_POST['imagem'];
     $id_categoria = $_POST['id_categoria'];
 
+    if (isset($_POST['promocao'])) {
+        $promocao = 1;
+    } else {
+        $promocao = 0;
+    }
+
     $sqlVerificar = "SELECT * FROM produtos WHERE nome = ?";
 
     $stmtVerificar = $conn->prepare($sqlVerificar);
@@ -32,11 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     } else {
 
-        $sql = "INSERT INTO produtos (nome, descricao, preco, estoque, imagem) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO produtos (nome, descricao, preco, estoque, imagem, promocao) VALUES (?, ?, ?, ?, ?, ?)";
 
         $smt = $conn->prepare($sql);
 
-        $stmt->bind_param("ssdis", $nome, $descricao, $preco, $estoque, $imagem);
+        $stmt->bind_param("ssdis", $nome, $descricao, $preco, $estoque, $imagem, $promocao);
 
         $stmt->execute();
 
@@ -135,10 +141,56 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 Caminho da imagem
             </label>
 
-            <input type="text" name="imagem" class="form-control" placeholder="img/produto.png"
-            >
+            <input type="text" name="imagem" class="form-control" placeholder="img/produto.png">
 
         </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Categoria
+            </label>
+
+            <select name="id_categoria" class="form-select" required>
+
+                <option value="">
+                    Selecione
+                </option>
+
+
+                <?php while ($categoria = $resultadoCategorias->fetch_assoc()) { ?>
+
+                    <option value="<?php echo $categoria['id_categoria']; ?>">
+
+                        <?php echo $categoria['nome']; ?>
+
+                    </option>
+
+                <?php } ?>
+
+            </select>
+
+        </div>
+
+        <div class="mb-3">
+
+            <input type="checkbox" name="promocao" value="1">
+
+            <label>
+                Produto em promoção
+            </label>
+
+        </div>
+
+
+        <button type="submit" class="btn btn-success">
+            Cadastrar
+        </button>
+
+
+        <a href="listar.php" class="btn btn-secondary">
+            Voltar
+        </a>
 
 
         </form>
