@@ -69,6 +69,18 @@ $resultado = $conn->query($sql);
 
                         </td>
 
+                        <td> 
+
+                            <img src="../../<?php echo $produto['imagem']; ?>" width="70">
+
+                        </td>
+
+                        <td> 
+
+                            <?php echo $produto['nome']; ?>
+
+                        </td>
+
                     </tr>
                 
                 <?php } ?>
