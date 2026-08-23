@@ -3,7 +3,6 @@ var carregarProdutos = async () => {
     try {
         const resposta = await fetch("api/dados_produtos.php");
         const produtos = await resposta.json();
-        produtos.length = 0;
         if (produtos.length == 0) {
             console.log("Nenhum produto encontrado");
             return;
