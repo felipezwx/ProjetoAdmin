@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11/06/2026 às 07:28
+-- Tempo de geração: 23/08/2026 às 06:25
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -55,44 +55,55 @@ CREATE TABLE `produtos` (
   `preco` decimal(10,2) NOT NULL,
   `estoque` int(11) NOT NULL,
   `imagem` varchar(255) DEFAULT NULL,
-  `link` varchar(255) DEFAULT NULL
+  `link` varchar(255) DEFAULT NULL,
+  `promocao` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `produtos`
 --
 
-INSERT INTO `produtos` (`id_produto`, `nome`, `descricao`, `preco`, `estoque`, `imagem`, `link`) VALUES
-(1, 'Raquete de Beach Tennis Mormaii Vitoria Marquezini', '', 2499.90, 5, 'img/raquetemormaivt.webp', 'infoprodutos/raquetevitoriamormaii.php'),
-(2, 'Raquete de Beach Tennis Heroes Starlight Ruby 2026', '', 3499.00, 5, 'img/raqueteheroesstarlight.webp', 'infoprodutos/raqueteheroesstarlight.php'),
-(3, 'Raquete de Beach Tennis Kona Gladiator Steel 2026', '', 2499.00, 5, 'img/raquetekonagladiator.png', 'infoprodutos/raquetekonagladiator.php'),
-(4, 'Raquete de Beach Tennis Fobel Husky 25/26', '', 2159.90, 5, 'img/raquetefobelhusky.png', 'infoprodutos/raquetefobelhusky.php'),
-(5, 'Raquete de Beach Tennis Fobel Fox 2025', '', 2019.90, 5, 'img/raquetefobelfox.png', 'infoprodutos/raquetefobelfox.php'),
-(6, 'Raquete de Beach Tennis Zand Bruxo 2026', '', 2789.10, 5, 'img/raquetezandbruxo2026.jpeg', 'infoprodutos/raquetezandbruxo2026.php'),
-(7, 'Raquete de Beach Tennis Fobel Macaw Onyx - Limited Edition', '', 3259.70, 5, 'img/raquetefobelmacawonyx.png.png', 'infoprodutos/raquetefobelmacawonyx.php'),
-(8, 'Raquete de Beach Tennis Zand Z Jump 2026', '', 2200.90, 5, 'img/raquetezandzjump.jpeg', 'infoprodutos/raquetezandzjump.php'),
-(9, 'Raquete de Beach Tennis Vision Precision 2026', '', 1789.90, 5, 'img/raquetevisionprecision.jpeg', 'infoprodutos/raquetevisionprecision.php'),
-(10, 'Raquete de Beach Tennis Drop Shot CANYON PRO 3.0 2026 Nikita', '', 2229.30, 5, 'img/raquetedropshotnikita.php', 'infoprodutos/raquetedropshotnikita.php'),
-(11, 'Camiseta Zand Z Extreme', '', 139.00, 10, 'img/camisa-zand-extreme.png', 'infoprodutos/camisetazandzextreme.php'),
-(12, 'Camiseta Kona Preta e Dourado', '', 159.00, 10, 'img/camisetakonapretaedourado.png', 'infoprodutos/camiseta-kona-preta-e-dourado.php'),
-(13, 'Short Drop Shot Preto Team Pro W25', '', 134.90, 10, 'img/shortsmasculinodropshotpreto.webp', 'infoprodutos/short-preto-drop-shot.php'),
-(14, 'Camiseta Polo Nox Masculina Esportiva', '', 339.80, 10, 'img/camisetapolonox.png', 'infoprodutos/camiseta-polo-nox.php'),
-(15, 'Camiseta Fobel Preta', '', 149.00, 10, 'img/camiseta-fobel-preta.png', 'infoprodutos/camiseta-preta-fobel.php'),
-(16, 'Camiseta Zand Z Jump Preta', '', 129.00, 10, 'img/camisetazandzjumppreta.png', 'infoprodutos/camiseta-zand-z-jump.php'),
-(17, 'Camiseta Fobel Gustavo Russo', '', 149.90, 10, 'img/camiseta-fobel-gustavorusso.png', 'infoprodutos/camiseta-fobel-gustavo-russo.php'),
-(18, 'Camiseta Zeiq Preta', '', 139.00, 10, 'img/camisetazeiqpreta.webp', 'infoprodutos/camiseta-zeiq-preta.php'),
-(19, 'Short Kona Basic Preto', '', 149.90, 10, 'img/shortskonapretobasic.png', 'infoprodutos/short-kona-basic.php'),
-(20, 'Camiseta Mormaii Vini Font 2025', '', 255.00, 10, 'img/camisetamormaiivinifont.jpeg', 'infoprodutos/camiseta-mormaii-vini-font.php'),
-(21, 'Vestido Macaquinho Mormaii Beach Tennis Vitória Marchezini', '', 359.00, 10, 'img/vestido-mormaii-vitoriamarchezini.png', 'infoprodutos/vestido-mormaii-vitoria-marchezini.php'),
-(22, 'Top alcinha Drop Shot Basic Preto', '', 129.90, 10, 'img/topdropshot.png', 'infoprodutos/top-drop-shot.php'),
-(23, 'Saia Feminina Kona Basic', '', 149.00, 10, 'img/saiakonabasic.png', 'infoprodutos/saia-kona-basic.php'),
-(24, 'Baby Look Dry Leo Branco - Zeiq', '', 139.00, 10, 'img/babylookzeiq.webp', 'infoprodutos/baby-look-zeiq.php'),
-(25, 'Regata Cropped Mormaii Vitoria Marchezini', '', 169.00, 10, 'img/regatacroppedvitoriamarchezini.jpeg', 'infoprodutos/regata-cropped-vitoria-marchezini.php'),
-(26, 'Top Alca Fina Mormaii Rosa', '', 128.00, 10, 'img/topalcafinamormaii.png', 'infoprodutos/top-alca-fina-mormaii-rosa.php'),
-(27, 'Regata Feminina Cropped Mormaii 2776', '', 99.90, 10, 'img/regatacroppedpreto.jpeg', 'infoprodutos/regata-cropped-mormaii-preta.php'),
-(28, 'Top Feminino Move Fobel', '', 149.00, 10, 'img/topfemininofobel.png', 'infoprodutos/top-feminino-fobel.php'),
-(29, 'Short Feminino Move Fobel', '', 149.90, 10, 'img/shortfemininofobel.png', 'infoprodutos/short-feminino-fobel.php'),
-(30, 'Vestido Macaquinho Mormaii Beach Tennis Vitória Marchezini Branco', '', 359.00, 10, 'img/vestido-mormaii-vitoriamarchezini-branco.png', 'infoprodutos/vestido-mormaii-vitoria-marchezini-branco.php');
+INSERT INTO `produtos` (`id_produto`, `nome`, `descricao`, `preco`, `estoque`, `imagem`, `link`, `promocao`) VALUES
+(1, 'Raquete do Douglas Lindão\r\n', '', 2499.90, 5, 'img/raquetemormaivt.webp', 'infoprodutos/raquetevitoriamormaii.php', 0),
+(2, 'Raquete de Beach Tennis Heroes Starlight Ruby 2026', '', 3499.00, 5, 'img/raqueteheroesstarlight.webp', 'infoprodutos/raqueteheroesstarlight.php', 0),
+(3, 'Raquete de Beach Tennis Kona Gladiator Steel 2026', '', 2499.00, 5, 'img/raquetekonagladiator.png', 'infoprodutos/raquetekonagladiator.php', 1),
+(4, 'Raquete de Beach Tennis Fobel Husky 25/26', '', 2159.90, 5, 'img/raquetefobelhusky.png', 'infoprodutos/raquetefobelhusky.php', 0),
+(5, 'Raquete de Beach Tennis Fobel Fox 2025', '', 2019.90, 5, 'img/raquetefobelfox.png', 'infoprodutos/raquetefobelfox.php', 0),
+(6, 'Raquete de Beach Tennis Zand Bruxo 2026', '', 2789.10, 5, 'img/raquetezandbruxo2026.jpeg', 'infoprodutos/raquetezandbruxo2026.php', 0),
+(7, 'Raquete de Beach Tennis Fobel Macaw Onyx - Limited Edition', '', 3259.70, 5, 'img/raquetefobelmacawonyx.png.png', 'infoprodutos/raquetefobelmacawonyx.php', 0),
+(8, 'Raquete de Beach Tennis Zand Z Jump 2026', '', 2200.90, 5, 'img/raquetezandzjump.jpeg', 'infoprodutos/raquetezandzjump.php', 0),
+(9, 'Raquete de Beach Tennis Vision Precision 2026', '', 1789.90, 5, 'img/raquetevisionprecision.jpeg', 'infoprodutos/raquetevisionprecision.php', 0),
+(10, 'Raquete de Beach Tennis Drop Shot CANYON PRO 3.0 2026 Nikita', '', 2229.30, 5, 'img/raquetedropshotnikita.php', 'infoprodutos/raquetedropshotnikita.php', 0),
+(11, 'Camiseta Zand Z Extreme', '', 139.00, 10, 'img/camisa-zand-extreme.png', 'infoprodutos/camisetazandzextreme.php', 0),
+(12, 'Camiseta Kona Preta e Dourado', '', 159.00, 10, 'img/camisetakonapretaedourado.png', 'infoprodutos/camiseta-kona-preta-e-dourado.php', 1),
+(13, 'Short Drop Shot Preto Team Pro W25', '', 134.90, 10, 'img/shortsmasculinodropshotpreto.webp', 'infoprodutos/short-preto-drop-shot.php', 0),
+(14, 'Camiseta Polo Nox Masculina Esportiva', '', 339.80, 10, 'img/camisetapolonox.png', 'infoprodutos/camiseta-polo-nox.php', 0),
+(15, 'Camiseta Fobel Preta', '', 149.00, 10, 'img/camiseta-fobel-preta.png', 'infoprodutos/camiseta-preta-fobel.php', 0),
+(16, 'Camiseta Zand Z Jump Preta', '', 129.00, 10, 'img/camisetazandzjumppreta.png', 'infoprodutos/camiseta-zand-z-jump.php', 0),
+(17, 'Camiseta Fobel Gustavo Russo', '', 149.90, 10, 'img/camiseta-fobel-gustavorusso.png', 'infoprodutos/camiseta-fobel-gustavo-russo.php', 0),
+(18, 'Camiseta Zeiq Preta', '', 139.00, 10, 'img/camisetazeiqpreta.webp', 'infoprodutos/camiseta-zeiq-preta.php', 0),
+(19, 'Short Kona Basic Preto', '', 149.90, 10, 'img/shortskonapretobasic.png', 'infoprodutos/short-kona-basic.php', 1),
+(20, 'Camiseta Mormaii Vini Font 2025', '', 255.00, 10, 'img/camisetamormaiivinifont.jpeg', 'infoprodutos/camiseta-mormaii-vini-font.php', 0),
+(21, 'Vestido Macaquinho Mormaii Beach Tennis Vitória Marchezini', '', 359.00, 10, 'img/vestido-mormaii-vitoriamarchezini.png', 'infoprodutos/vestido-mormaii-vitoria-marchezini.php', 0),
+(22, 'Top alcinha Drop Shot Basic Preto', '', 129.90, 10, 'img/topdropshot.png', 'infoprodutos/top-drop-shot.php', 0),
+(23, 'Saia Feminina Kona Basic', '', 149.00, 10, 'img/saiakonabasic.png', 'infoprodutos/saia-kona-basic.php', 1),
+(24, 'Baby Look Dry Leo Branco - Zeiq', '', 139.00, 10, 'img/babylookzeiq.webp', 'infoprodutos/baby-look-zeiq.php', 0),
+(25, 'Regata Cropped Mormaii Vitoria Marchezini', '', 169.00, 10, 'img/regatacroppedvitoriamarchezini.jpeg', 'infoprodutos/regata-cropped-vitoria-marchezini.php', 0),
+(26, 'Top Alca Fina Mormaii Rosa', '', 128.00, 10, 'img/topalcafinamormaii.png', 'infoprodutos/top-alca-fina-mormaii-rosa.php', 0),
+(27, 'Regata Feminina Cropped Mormaii 2776', '', 99.90, 10, 'img/regatacroppedpreto.jpeg', 'infoprodutos/regata-cropped-mormaii-preta.php', 0),
+(28, 'Top Feminino Move Fobel', '', 149.00, 10, 'img/topfemininofobel.png', 'infoprodutos/top-feminino-fobel.php', 0),
+(29, 'Short Feminino Move Fobel', '', 149.90, 10, 'img/shortfemininofobel.png', 'infoprodutos/short-feminino-fobel.php', 0),
+(30, 'Vestido Macaquinho Mormaii Beach Tennis Vitória Marchezini Branco', '', 359.00, 10, 'img/vestido-mormaii-vitoriamarchezini-branco.png', 'infoprodutos/vestido-mormaii-vitoria-marchezini-branco.php', 0),
+(31, 'Raquete Teste', 'PROddd', 199.90, 10, 'img/teste.jpg', NULL, 0),
+(32, 'Raquete teste Cadastro', 'Raquete top', 2199.00, 2, 'mg101-057-raquete-de-beach-tennis-zeiq-supernova-2026-18k-d2.jpg', NULL, 0);
+
+--
+-- Acionadores `produtos`
+--
+DELIMITER $$
+CREATE TRIGGER `trg_produtos_valores_positivos` BEFORE UPDATE ON `produtos` FOR EACH ROW SET NEW.preco = ABS(NEW.preco), NEW.estoque = ABS(NEW.estoque)
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -139,7 +150,35 @@ INSERT INTO `produto_categoria` (`id_produto`, `id_categoria`) VALUES
 (27, 3),
 (28, 3),
 (29, 3),
-(30, 3);
+(30, 3),
+(32, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para view `vw_produtos_categorias`
+-- (Veja abaixo para a visão atual)
+--
+CREATE TABLE `vw_produtos_categorias` (
+`id_produto` int(11)
+,`nome` varchar(150)
+,`descricao` text
+,`preco` decimal(10,2)
+,`estoque` int(11)
+,`imagem` varchar(255)
+,`promocao` tinyint(1)
+,`id_categoria` int(11)
+,`categoria` varchar(100)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para view `vw_produtos_categorias`
+--
+DROP TABLE IF EXISTS `vw_produtos_categorias`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_produtos_categorias`  AS SELECT `p`.`id_produto` AS `id_produto`, `p`.`nome` AS `nome`, `p`.`descricao` AS `descricao`, `p`.`preco` AS `preco`, `p`.`estoque` AS `estoque`, `p`.`imagem` AS `imagem`, `p`.`promocao` AS `promocao`, `c`.`id_categoria` AS `id_categoria`, `c`.`nome` AS `categoria` FROM ((`produtos` `p` join `produto_categoria` `pc` on(`p`.`id_produto` = `pc`.`id_produto`)) join `categorias` `c` on(`pc`.`id_categoria` = `c`.`id_categoria`)) ;
 
 --
 -- Índices para tabelas despejadas
@@ -178,7 +217,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Restrições para tabelas despejadas
