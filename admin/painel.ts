@@ -6,6 +6,11 @@ var carregarProdutos = async () => {
 
         const produtos = await resposta.json();
 
+        if (produtos.length == 0) {
+            console.log("Nenhum produto encontrado");
+            return;
+        }
+
         const valorTotal = produtos.reduce((total: number, produto: { preco: string, estoque: string}) => {
 
         return total + (Number(produto.preco) * Number(produto.estoque));
