@@ -38,6 +38,36 @@ $produto = $resultado->fetch_assoc();
                 <h2>Editar Produto</h2>
             </div>
 
+            <div class="card-body">
+
+                <form method="POST">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">Nome: </label>
+
+                        <input
+                            type="text"
+                            name="nome"
+                            class="form-control"
+                            value="<?php echo $produto['nome']; ?>"
+
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-success">
+                            Salvar Alterações
+                        </button>
+
+                        <a href="listar.php" class="btn btn-secondary">
+                            Voltar
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
+
         </div>
 
     </div>
