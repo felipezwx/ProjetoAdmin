@@ -1,0 +1,19 @@
+body {
+    background-color: #f4f4f4;
+}
+
+.nav-admin {
+    padding: 15px 0;
+}
+
+.container-admin {
+    margin-top: 0;
+}
+
+.titulo-admin {
+    margin-bottom: 30px;
+}
+
+.card {
+    border-radius: 8px;
+}
