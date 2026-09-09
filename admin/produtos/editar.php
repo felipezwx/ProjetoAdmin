@@ -20,6 +20,60 @@ $sqlCategorias = "SELECT * FROM categorias";
 
 $resultadoCategorias = $conn->query($sqlCategorias);
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    $nome = $_POST['nome'];
+    $descricao = $_POST['descricao'];
+    $preco = $_POST['preco'];
+    $estoque = $_POST['estoque'];
+    $imagem = $_POST['imagem'];
+    $id_categoria = $_POST['id_categoria'];
+
+    if (isset($_POST['promocao'])) {
+        $promocao = 1;
+    } else {
+        $promocao = 0;
+    }
+
+    $sqlAtualizar = "UPDATE produtos
+                     SET nome = ?, descricao = ?, preco = ?, estoque = ?, imagem = ?, promocao = ?
+                     WHERE id_produto = ?";
+
+    $stmtAtualizar = $conn->prepare($sqlAtualizar);
+
+    $stmtAtualizar->bind_param(
+        "ssdisii",
+        $nome,
+        $descricao,
+        $preco,
+        $estoque,
+        $imagem,
+        $promocao,
+        $id
+    );
+
+    $stmtAtualizar->execute();
+
+
+    $sqlAtualizarCategoria = "UPDATE produto_categoria
+                              SET id_categoria = ?
+                              WHERE id_produto = ?";
+
+    $stmtCategoria = $conn->prepare($sqlAtualizarCategoria);
+
+    $stmtCategoria->bind_param(
+        "ii",
+        $id_categoria,
+        $id
+    );
+
+    $stmtCategoria->execute();
+
+
+    header("Location: listar.php");
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
