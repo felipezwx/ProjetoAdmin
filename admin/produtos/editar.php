@@ -54,6 +54,16 @@ $produto = $resultado->fetch_assoc();
 
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-label">Descrição:</label>
+
+                        <textarea
+                            name="descricao"
+                            class="form-control"
+                            rows="4"
+                        ><?php echo $produto['descricao']; ?></textarea>
+                    </div>
+
                     <div class="mt-4">
                         <button type="submit" class="btn btn-success">
                             Salvar Alterações
