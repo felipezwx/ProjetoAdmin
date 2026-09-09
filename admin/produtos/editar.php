@@ -4,7 +4,7 @@ include '../../conexao.php';
 
 $id = $_GET['id'];
 
-$sql = "SELECT * FROM produtos WHERE id_produto = ? LIMIT 1";
+$sql = "SELECT * FROM vw_produtos_categorias WHERE id_produto = ? LIMIT 1";
 
 $stmt = $conn->prepare($sql);
 
@@ -15,6 +15,10 @@ $stmt->execute();
 $resultado = $stmt->get_result();
 
 $produto = $resultado->fetch_assoc();
+
+$sqlCategorias = "SELECT * FROM categorias";
+
+$resultadoCategorias = $conn->query($sqlCategorias);
 
 ?>
 
@@ -85,6 +89,67 @@ $produto = $resultado->fetch_assoc();
                             class="form-control"
                             value="<?php echo $produto['estoque']; ?>"
                         >
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Imagem:</label>
+
+                        <input
+                            type="text"
+                            name="imagem"
+                            class="form-control"
+                            value="<?php echo $produto['imagem']; ?>"
+                        >
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">Categoria:</label>
+
+                        <select name="id_categoria" class="form-select">
+
+                            <?php while ($categoria = $resultadoCategorias->fetch_assoc()) { ?>
+
+                                <option
+                                    value="<?php echo $categoria['id_categoria']; ?>"
+
+                                    <?php
+                                        if ($categoria['id_categoria'] == $produto['id_categoria']) {
+                                            echo "selected";
+                                    }
+                                    ?>
+                                >
+
+                                    <?php echo $categoria['nome']; ?>
+
+                                </option>
+
+                            <?php } ?>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-check mb-3">
+
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            name="promocao"
+                            value="1"
+                            id="promocao"
+
+                            <?php
+                            if ($produto['promocao'] == 1) {
+                                echo "checked";
+                            }
+                            ?>
+                        >
+
+                        <label class="form-check-label" for="promocao">
+                            Produto em promoção
+                        </label>
+
                     </div>
 
                     <div class="mt-4">
