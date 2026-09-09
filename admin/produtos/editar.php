@@ -64,6 +64,29 @@ $produto = $resultado->fetch_assoc();
                         ><?php echo $produto['descricao']; ?></textarea>
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-label">Preço:</label>
+
+                        <input
+                            type="number"
+                            step="0.01"
+                            name="preco"
+                            class="form-control"
+                            value="<?php echo $produto['preco']; ?>"
+                        >
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Estoque:</label>
+
+                        <input
+                            type="number"
+                            name="estoque"
+                            class="form-control"
+                            value="<?php echo $produto['estoque']; ?>"
+                        >
+                    </div>
+
                     <div class="mt-4">
                         <button type="submit" class="btn btn-success">
                             Salvar Alterações
