@@ -55,9 +55,9 @@
                             Gerencie as categorias.
                         </p>
 
-                        <button class="btn btn-secondary" disabled>
-                            Em breve
-                        </button>
+                        <a href="categorias/listar.php" class="btn btn-dark">
+                            Gerenciar Categorias
+                        </a>
                     </div>
                 </div>
             </div>
