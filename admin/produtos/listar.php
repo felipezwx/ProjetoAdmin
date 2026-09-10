@@ -19,6 +19,17 @@ $resultado = $conn->query($sql);
     <link rel="stylesheet" type="text/css" href="../style-admin.css">
 </head>
 <body>
+
+    <?php
+        if (isset($_GET['mensagem']) && $_GET['mensagem'] == 'excluido') {
+        ?>
+            <div class="alert alert-success">
+                Produto excluído com sucesso.
+            </div>
+        <?php
+        }
+    ?>
+
     <div class="container mt-5">
 
         <h1 class="mb-4">
