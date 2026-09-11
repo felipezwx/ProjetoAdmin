@@ -23,73 +23,101 @@ $resultado = $conn->query($sql);
 
 <body>
 
-<div class="container py-5">
+    <div class="container py-5">
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
 
-        <h2>Categorias</h2>
+            <h2>Categorias</h2>
 
-        <a href="cadastrar.php" class="btn btn-success">
-            Nova Categoria
+            <a href="cadastrar.php" class="btn btn-success">
+                Nova Categoria
+            </a>
+
+        </div>
+
+        <?php
+
+            if (isset($_GET['mensagem'])) {
+
+                if ($_GET['mensagem'] == 'excluido') {
+            ?>
+
+                    <div class="alert alert-success">
+                        Categoria excluída com sucesso.
+                    </div>
+
+            <?php
+                }
+
+                if ($_GET['mensagem'] == 'em_uso') {
+            ?>
+
+                    <div class="alert alert-danger">
+                        Não é possível excluir esta categoria, pois existem produtos vinculados a ela.
+                    </div>
+
+            <?php
+                }
+            }
+
+        ?>
+
+        <table class="table table-bordered table-striped">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <?php while ($categoria = $resultado->fetch_assoc()) { ?>
+
+                    <tr>
+
+                        <td>
+                            <?php echo $categoria['id_categoria']; ?>
+                        </td>
+
+                        <td>
+                            <?php echo $categoria['nome']; ?>
+                        </td>
+
+                        <td>
+
+                            <a
+                                href="editar.php?id=<?php echo $categoria['id_categoria']; ?>"
+                                class="btn btn-warning btn-sm"
+                            >
+                                Editar
+                            </a>
+
+                            <a
+                                href="excluir.php?id=<?php echo $categoria['id_categoria']; ?>"
+                                class="btn btn-danger btn-sm" 
+                                onclick="return confirm('Deseja realmente excluir esta categoria?')"
+                            >
+                                Excluir
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                <?php } ?>
+
+            </tbody>
+
+        </table>
+
+        <a href="../painel.php" class="btn btn-secondary">
+            Voltar ao Painel
         </a>
 
     </div>
-
-    <table class="table table-bordered table-striped">
-
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-
-        <tbody>
-
-            <?php while ($categoria = $resultado->fetch_assoc()) { ?>
-
-                <tr>
-
-                    <td>
-                        <?php echo $categoria['id_categoria']; ?>
-                    </td>
-
-                    <td>
-                        <?php echo $categoria['nome']; ?>
-                    </td>
-
-                    <td>
-
-                        <a
-                            href="editar.php?id=<?php echo $categoria['id_categoria']; ?>"
-                            class="btn btn-warning btn-sm"
-                        >
-                            Editar
-                        </a>
-
-                        <a
-                            href="excluir.php?id=<?php echo $categoria['id_categoria']; ?>"
-                            class="btn btn-danger btn-sm"
-                        >
-                            Excluir
-                        </a>
-
-                    </td>
-
-                </tr>
-
-            <?php } ?>
-
-        </tbody>
-
-    </table>
-
-    <a href="../painel.php" class="btn btn-secondary">
-        Voltar ao Painel
-    </a>
-
-</div>
 
 </body>
 </html>
