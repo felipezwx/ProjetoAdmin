@@ -82,9 +82,9 @@ if (!isset($_SESSION['usuario'])) {
                             Visualize mensagens recebidas.
                         </p>
 
-                        <button class="btn btn-secondary" disabled>
-                            Em breve
-                        </button>
+                        <a href="contatos/listar.php" class="btn btn-dark">
+                            Gerenciar Mensagens
+                        </a>
                     </div>
                 </div>
             </div>
