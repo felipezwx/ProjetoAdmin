@@ -11,6 +11,10 @@
 <body>
     <footer class="footer">
         <p>© 2026 Be Fit Beach Tennis. Todos os direitos reservados.</p>
+
+        <a href="/ProjetoAdmin/admin/login.php" class="link-admin">
+            Admin
+        </a>
     </footer>
 </body>
 </html>

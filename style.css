@@ -662,6 +662,16 @@ nav ul li a:hover {
     margin-top: 140px;
 }
 
+.link-admin {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.link-admin:hover {
+    color: #000;
+}
+
 @media (max-width: 768px){
 
     .topo-header{
