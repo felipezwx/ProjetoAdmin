@@ -107,6 +107,48 @@ if (!isset($_SESSION['usuario'])) {
 
     </div>
 
+    <h2 class="mt-5 mb-4">Resumo do Estoque</h2>
+
+    <div class="row">
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5>Total de Produtos</h5>
+
+                    <h3 id="totalProdutos">
+                        0
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5>Valor do Estoque</h5>
+
+                    <h3 id="valorEstoque">
+                        R$ 0,00
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5>Estoque Baixo</h5>
+
+                    <h3 id="estoqueBaixo">
+                        0
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <script src="painel.js"></script>
 </body>
 </html>

@@ -11,13 +11,39 @@ var carregarProdutos = async () => {
             return;
         }
 
-        const valorTotal = produtos.reduce((total: number, produto: { preco: string, estoque: string}) => {
+        const totalProdutos = produtos.length;
 
-        return total + (Number(produto.preco) * Number(produto.estoque));
+        const estoqueBaixo = produtos.filter(
+            (produto: { estoque: string }) => Number(produto.estoque) <= 5
+        ).length;
 
-        }, 0);
+        const valorTotal = produtos.reduce(
+            (total: number, produto: { preco: string, estoque: string}) => {
 
-console.log("Valor total do estoque:", valorTotal);
+            return total + (Number(produto.preco) * Number(produto.estoque));
+
+            }, 0
+        );
+
+        const campoTotal = document.getElementById("totalProdutos");
+        const campoValor = document.getElementById("valorEstoque");
+        const campoEstoque = document.getElementById("estoqueBaixo");
+
+
+        if (campoTotal) {
+            campoTotal.innerText = totalProdutos.toString();
+        }
+
+        if (campoValor) {
+            campoValor.innerText = "R$ " + valorTotal.toFixed(2).replace(".", ",");
+        }
+
+        if (campoEstoque) {
+            campoEstoque.innerText = estoqueBaixo.toString();
+        }
+
+
+        console.log("Valor total do estoque:", valorTotal);
 
         console.log(produtos);
 
