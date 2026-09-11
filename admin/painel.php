@@ -149,6 +149,64 @@ if (!isset($_SESSION['usuario'])) {
 
     </div>
 
+    <h2 class="mt-5 mb-4">Relatório de Produtos</h2>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+
+            <label class="form-label">
+                Filtrar por Categoria:
+            </label>
+
+            <select id="filtroCategoria" class="form-select">
+
+                <option value="todos">
+                    Todas
+                </option>
+
+                <option value="Raquetes">
+                    Raquetes
+                </option>
+
+                <option value="Roupas Masculinas">
+                    Roupas Masculinas
+                </option>
+
+                <option value="Roupas Femininas">
+                    Roupas Femininas
+                </option>
+
+            </select>
+
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-striped">
+
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Categoria</th>
+                        <th>Preço</th>
+                        <th>Estoque</th>
+                        <th>Valor em Estoque</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tabelaRelatorio">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
     <script src="painel.js"></script>
 </body>
 </html>

@@ -24,6 +24,38 @@ var carregarProdutos = async () => {
         if (campoEstoque) {
             campoEstoque.innerText = estoqueBaixo.toString();
         }
+        const tabela = document.getElementById("tabelaRelatorio");
+        const filtro = document.getElementById("filtroCategoria");
+        function mostrarRelatorio(lista) {
+            if (tabela) {
+                tabela.innerHTML = "";
+                lista.forEach(produto => {
+                    const valorEstoque = Number(produto.preco) * Number(produto.estoque);
+                    tabela.innerHTML += `
+                        <tr>
+                            <td>${produto.nome}</td>
+                            <td>${produto.categoria}</td>
+                            <td>R$ ${Number(produto.preco).toFixed(2)}</td>
+                            <td>${produto.estoque}</td>
+                            <td>R$ ${valorEstoque.toFixed(2)}</td>
+                        </tr>
+                    `;
+                });
+            }
+        }
+        mostrarRelatorio(produtos);
+        if (filtro) {
+            filtro.addEventListener("change", () => {
+                const categoria = filtro.value;
+                if (categoria == "todos") {
+                    mostrarRelatorio(produtos);
+                }
+                else {
+                    const produtosFiltrados = produtos.filter((produto) => produto.categoria == categoria);
+                    mostrarRelatorio(produtosFiltrados);
+                }
+            });
+        }
         console.log("Valor total do estoque:", valorTotal);
         console.log(produtos);
     }
