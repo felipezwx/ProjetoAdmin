@@ -1,5 +1,7 @@
 <?php
 
+include 'conexao.php';
+
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $nome = trim($_POST["nome"]);
@@ -14,6 +16,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
         die("E-mail inválido!");
     }
+
+    $sql = "INSERT INTO contatos (nome, email, telefone, mensagem)
+            VALUES (?, ?, ?, ?)";
+
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bind_param(
+        "ssss",
+        $nome,
+        $email,
+        $telefone,
+        $mensagem
+    );
+
+    $stmt->execute();
 
     header("Location: contato.php?sucesso=1");
     exit;
