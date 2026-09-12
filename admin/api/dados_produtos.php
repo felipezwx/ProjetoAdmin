@@ -4,9 +4,13 @@ header('Content-Type: application/json; charset=utf-8');
 
 include '../../conexao.php';
 
-$sql = "SELECT * FROM vw_produtos_categorias";
+$categoria = $_GET['categoria'] ?? 'todos';
+
+$sql = "CALL sp_relatorio_produtos(?)";
 
 $stmt = $conn->prepare($sql);
+
+$stmt->bind_param("s", $categoria);
 
 $stmt->execute();
 

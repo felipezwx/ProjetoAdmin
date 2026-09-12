@@ -77,21 +77,23 @@ var carregarProdutos = async () => {
 
         if (filtro) {
 
-            filtro.addEventListener("change", () => {
+            filtro.addEventListener("change", async () => {
 
                 const categoria = filtro.value;
 
-                if (categoria == "todos") {
+                try {
 
-                    mostrarRelatorio(produtos);
-
-                } else {
-
-                    const produtosFiltrados = produtos.filter(
-                        (produto: any) => produto.categoria == categoria
+                    const respostaFiltro = await fetch(
+                        "api/dados_produtos.php?categoria=" + encodeURIComponent(categoria)
                     );
 
+                    const produtosFiltrados = await respostaFiltro.json();
+
                     mostrarRelatorio(produtosFiltrados);
+
+                } catch (erro) {
+
+                    console.log("Erro ao filtrar produtos");
 
                 }
 
