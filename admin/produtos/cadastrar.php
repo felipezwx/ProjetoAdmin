@@ -1,5 +1,6 @@
 <?php
 
+include '../verificar_login.php';
 include '../../conexao.php';
 
 $sqlCategorias = "SELECT * FROM categorias";
