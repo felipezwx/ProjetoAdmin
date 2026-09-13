@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13/09/2026 às 20:28
+-- Tempo de geração: 13/09/2026 às 22:24
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -80,7 +80,7 @@ INSERT INTO `categorias` (`id_categoria`, `nome`) VALUES
 (1, 'Raquetes'),
 (2, 'Roupas Masculinas'),
 (3, 'Roupas Femininas'),
-(4, 'Promoções');
+(6, 'mochila');
 
 -- --------------------------------------------------------
 
@@ -148,7 +148,8 @@ INSERT INTO `produtos` (`id_produto`, `nome`, `descricao`, `preco`, `estoque`, `
 (27, 'Regata Feminina Cropped Mormaii 2776', '', 99.90, 10, 'img/regatacroppedpreto.jpeg', 'infoprodutos/regata-cropped-mormaii-preta.php', 0),
 (28, 'Top Feminino Move Fobel', '', 149.00, 10, 'img/topfemininofobel.png', 'infoprodutos/top-feminino-fobel.php', 0),
 (29, 'Short Feminino Move Fobel', '', 149.90, 10, 'img/shortfemininofobel.png', 'infoprodutos/short-feminino-fobel.php', 0),
-(30, 'Vestido Macaquinho Mormaii Beach Tennis Vitória Marchezini Branco', '', 359.00, 10, 'img/vestido-mormaii-vitoriamarchezini-branco.png', 'infoprodutos/vestido-mormaii-vitoria-marchezini-branco.php', 0);
+(30, 'Vestido Macaquinho Mormaii Beach Tennis Vitória Marchezini Branco', '', 359.00, 10, 'img/vestido-mormaii-vitoriamarchezini-branco.png', 'infoprodutos/vestido-mormaii-vitoria-marchezini-branco.php', 0),
+(34, 'Mochila Heroes Starlight', 'Mochila Bonita', 999.99, 2, 'sem.png', NULL, 0);
 
 --
 -- Acionadores `produtos`
@@ -174,7 +175,7 @@ CREATE TABLE `produto_categoria` (
 --
 
 INSERT INTO `produto_categoria` (`id_produto`, `id_categoria`) VALUES
-(1, 3),
+(1, 1),
 (2, 1),
 (3, 1),
 (4, 1),
@@ -203,7 +204,8 @@ INSERT INTO `produto_categoria` (`id_produto`, `id_categoria`) VALUES
 (27, 3),
 (28, 3),
 (29, 3),
-(30, 3);
+(30, 3),
+(34, 6);
 
 -- --------------------------------------------------------
 
@@ -296,7 +298,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `contatos`
@@ -308,7 +310,7 @@ ALTER TABLE `contatos`
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`

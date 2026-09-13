@@ -105,9 +105,9 @@ if (!isset($_SESSION['usuario'])) {
                             Consulte dados da loja.
                         </p>
 
-                        <button class="btn btn-secondary" disabled>
-                            Em breve
-                        </button>
+                        <a href="#relatorio" class="btn btn-dark">
+                            Ver Relatório
+                        </a>
                     </div>
                 </div>
             </div>
@@ -156,7 +156,7 @@ if (!isset($_SESSION['usuario'])) {
 
     </div>
 
-    <h2 class="mt-5 mb-4">Relatório de Produtos</h2>
+    <h2 id="relatorio" class="mt-5 mb-4">Relatório de Produtos</h2>
 
     <div class="card shadow-sm mb-4">
         <div class="card-body">

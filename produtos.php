@@ -39,6 +39,10 @@
         $produtos[] = $produto;
     }
 
+    $sqlCategorias = "SELECT * FROM categorias ORDER BY nome";
+
+    $resultadoCategorias = $conn->query($sqlCategorias);
+
     ?>
 
     <?php include 'header.php'; ?>
@@ -55,17 +59,16 @@
                 Todos
             </button>
 
-            <button class="btn btn-outline-dark" onclick="mostrarProdutos('Raquetes')">
-                Raquetes
-            </button>
+            <?php while($categoria = $resultadoCategorias->fetch_assoc()) { ?>
 
-            <button class="btn btn-outline-dark" onclick="mostrarProdutos('Roupas Masculinas')">
-                Masculino
-            </button>
+                <button
+                    class="btn btn-outline-dark"
+                    onclick="mostrarProdutos('<?php echo $categoria['nome']; ?>')"
+                >
+                    <?php echo $categoria['nome']; ?>
+                </button>
 
-            <button class="btn btn-outline-dark" onclick="mostrarProdutos('Roupas Femininas')">
-                Feminino
-            </button>
+            <?php } ?>
 
             <button class="btn btn-outline-danger"
                 onclick="mostrarProdutos('promocao')">
