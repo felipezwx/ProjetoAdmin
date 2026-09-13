@@ -124,6 +124,7 @@ $resultado = $conn->query($sql);
                 <?php } ?>
 
             </tbody>
+            </table>
 
     </div>
 </body>

@@ -32,6 +32,12 @@ var carregarProdutos = async () => {
             }, 0
         );
 
+        const nomesProdutos = produtos.map(
+            (produto: Produto) => produto.nome
+        );
+
+        console.log("Nomes dos produtos:", nomesProdutos);
+
         const campoTotal = document.getElementById("totalProdutos");
         const campoValor = document.getElementById("valorEstoque");
         const campoEstoque = document.getElementById("estoqueBaixo");

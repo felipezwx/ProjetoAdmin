@@ -110,6 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             name="nome"
                             class="form-control"
                             value="<?php echo $produto['nome']; ?>"
+                        >
 
                     </div>
 

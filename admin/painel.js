@@ -12,6 +12,8 @@ var carregarProdutos = async () => {
         const valorTotal = produtos.reduce((total, produto) => {
             return total + (Number(produto.preco) * Number(produto.estoque));
         }, 0);
+        const nomesProdutos = produtos.map((produto) => produto.nome);
+        console.log("Nomes dos produtos:", nomesProdutos);
         const campoTotal = document.getElementById("totalProdutos");
         const campoValor = document.getElementById("valorEstoque");
         const campoEstoque = document.getElementById("estoqueBaixo");
