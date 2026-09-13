@@ -3,10 +3,6 @@ var carregarProdutos = async () => {
     try {
         const resposta = await fetch("api/dados_produtos.php");
         const produtos = await resposta.json();
-        if (produtos.length == 0) {
-            console.log("Nenhum produto encontrado");
-            return;
-        }
         const totalProdutos = produtos.length;
         const estoqueBaixo = produtos.filter((produto) => Number(produto.estoque) <= 5).length;
         const valorTotal = produtos.reduce((total, produto) => {
@@ -14,6 +10,25 @@ var carregarProdutos = async () => {
         }, 0);
         const nomesProdutos = produtos.map((produto) => produto.nome);
         console.log("Nomes dos produtos:", nomesProdutos);
+        const rankingProdutos = [...produtos].sort((a, b) => {
+            const valorA = Number(a.preco) * Number(a.estoque);
+            const valorB = Number(b.preco) * Number(b.estoque);
+            return valorB - valorA;
+        });
+        const campoRanking = document.getElementById("rankingProdutos");
+        if (campoRanking) {
+            campoRanking.textContent = "";
+            rankingProdutos.slice(0, 5).forEach((produto) => {
+                const valorEstoque = Number(produto.preco) * Number(produto.estoque);
+                const item = document.createElement("li");
+                item.textContent =
+                    produto.nome +
+                        " - R$ " +
+                        valorEstoque.toFixed(2).replace(".", ",");
+                campoRanking.appendChild(item);
+            });
+        }
+        console.log("Ranking de produtos:", rankingProdutos);
         const campoTotal = document.getElementById("totalProdutos");
         const campoValor = document.getElementById("valorEstoque");
         const campoEstoque = document.getElementById("estoqueBaixo");
@@ -31,6 +46,15 @@ var carregarProdutos = async () => {
         function mostrarRelatorio(lista) {
             if (tabela) {
                 tabela.textContent = "";
+                if (lista.length == 0) {
+                    const linha = document.createElement("tr");
+                    const coluna = document.createElement("td");
+                    coluna.colSpan = 5;
+                    coluna.textContent = "Nenhum produto encontrado.";
+                    linha.appendChild(coluna);
+                    tabela.appendChild(linha);
+                    return;
+                }
                 lista.forEach((produto) => {
                     const valorEstoque = Number(produto.preco) * Number(produto.estoque);
                     const linha = document.createElement("tr");

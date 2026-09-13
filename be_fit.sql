@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23/08/2026 às 06:25
+-- Tempo de geração: 13/09/2026 às 20:28
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -20,6 +20,46 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `be_fit`
 --
+
+DELIMITER $$
+--
+-- Procedimentos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_relatorio_produtos` (IN `p_categoria` VARCHAR(100), IN `p_busca` VARCHAR(150), IN `p_limite` INT, IN `p_offset` INT)   BEGIN
+
+    SELECT
+        id_produto,
+        nome,
+        categoria,
+        preco,
+        estoque,
+        fn_valor_estoque(preco, estoque) AS valor_estoque
+
+    FROM vw_produtos_categorias
+
+    WHERE
+        (p_categoria = 'todos' OR categoria = p_categoria)
+
+        AND
+
+        (p_busca = '' OR nome LIKE CONCAT('%', p_busca, '%'))
+
+    ORDER BY nome
+
+    LIMIT p_limite OFFSET p_offset;
+
+END$$
+
+--
+-- Funções
+--
+CREATE DEFINER=`root`@`localhost` FUNCTION `fn_valor_estoque` (`p_preco` DECIMAL(10,2), `p_estoque` INT) RETURNS DECIMAL(12,2) DETERMINISTIC BEGIN
+
+    RETURN ROUND(p_preco * p_estoque, 2);
+
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -45,6 +85,21 @@ INSERT INTO `categorias` (`id_categoria`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `contatos`
+--
+
+CREATE TABLE `contatos` (
+  `id_contato` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `telefone` varchar(20) DEFAULT NULL,
+  `mensagem` text NOT NULL,
+  `status` varchar(20) DEFAULT 'Novo'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `produtos`
 --
 
@@ -64,7 +119,7 @@ CREATE TABLE `produtos` (
 --
 
 INSERT INTO `produtos` (`id_produto`, `nome`, `descricao`, `preco`, `estoque`, `imagem`, `link`, `promocao`) VALUES
-(1, 'Raquete do Douglas Lindão\r\n', '', 2499.90, 5, 'img/raquetemormaivt.webp', 'infoprodutos/raquetevitoriamormaii.php', 0),
+(1, 'Raquete beach tennis Mormaii vitoria marchezini ii', '', 2499.90, 4, 'img/raquetemormaivt.webp', 'infoprodutos/raquetevitoriamormaii.php', 0),
 (2, 'Raquete de Beach Tennis Heroes Starlight Ruby 2026', '', 3499.00, 5, 'img/raqueteheroesstarlight.webp', 'infoprodutos/raqueteheroesstarlight.php', 0),
 (3, 'Raquete de Beach Tennis Kona Gladiator Steel 2026', '', 2499.00, 5, 'img/raquetekonagladiator.png', 'infoprodutos/raquetekonagladiator.php', 1),
 (4, 'Raquete de Beach Tennis Fobel Husky 25/26', '', 2159.90, 5, 'img/raquetefobelhusky.png', 'infoprodutos/raquetefobelhusky.php', 0),
@@ -93,9 +148,7 @@ INSERT INTO `produtos` (`id_produto`, `nome`, `descricao`, `preco`, `estoque`, `
 (27, 'Regata Feminina Cropped Mormaii 2776', '', 99.90, 10, 'img/regatacroppedpreto.jpeg', 'infoprodutos/regata-cropped-mormaii-preta.php', 0),
 (28, 'Top Feminino Move Fobel', '', 149.00, 10, 'img/topfemininofobel.png', 'infoprodutos/top-feminino-fobel.php', 0),
 (29, 'Short Feminino Move Fobel', '', 149.90, 10, 'img/shortfemininofobel.png', 'infoprodutos/short-feminino-fobel.php', 0),
-(30, 'Vestido Macaquinho Mormaii Beach Tennis Vitória Marchezini Branco', '', 359.00, 10, 'img/vestido-mormaii-vitoriamarchezini-branco.png', 'infoprodutos/vestido-mormaii-vitoria-marchezini-branco.php', 0),
-(31, 'Raquete Teste', 'PROddd', 199.90, 10, 'img/teste.jpg', NULL, 0),
-(32, 'Raquete teste Cadastro', 'Raquete top', 2199.00, 2, 'mg101-057-raquete-de-beach-tennis-zeiq-supernova-2026-18k-d2.jpg', NULL, 0);
+(30, 'Vestido Macaquinho Mormaii Beach Tennis Vitória Marchezini Branco', '', 359.00, 10, 'img/vestido-mormaii-vitoriamarchezini-branco.png', 'infoprodutos/vestido-mormaii-vitoria-marchezini-branco.php', 0);
 
 --
 -- Acionadores `produtos`
@@ -121,7 +174,7 @@ CREATE TABLE `produto_categoria` (
 --
 
 INSERT INTO `produto_categoria` (`id_produto`, `id_categoria`) VALUES
-(1, 1),
+(1, 3),
 (2, 1),
 (3, 1),
 (4, 1),
@@ -150,8 +203,27 @@ INSERT INTO `produto_categoria` (`id_produto`, `id_categoria`) VALUES
 (27, 3),
 (28, 3),
 (29, 3),
-(30, 3),
-(32, 1);
+(30, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id_usuario` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `senha` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `nome`, `email`, `senha`) VALUES
+(1, 'Administrador', 'adminbefit@gmail.com', '$2y$10$/GKFqkm5no.xEXXpYn7Ryu2Z.DdyoU6pEJp2aAICDAN86dU6E.pXK');
 
 -- --------------------------------------------------------
 
@@ -191,6 +263,12 @@ ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id_categoria`);
 
 --
+-- Índices de tabela `contatos`
+--
+ALTER TABLE `contatos`
+  ADD PRIMARY KEY (`id_contato`);
+
+--
 -- Índices de tabela `produtos`
 --
 ALTER TABLE `produtos`
@@ -204,6 +282,13 @@ ALTER TABLE `produto_categoria`
   ADD KEY `id_categoria` (`id_categoria`);
 
 --
+-- Índices de tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
@@ -211,13 +296,25 @@ ALTER TABLE `produto_categoria`
 -- AUTO_INCREMENT de tabela `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `contatos`
+--
+ALTER TABLE `contatos`
+  MODIFY `id_contato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT de tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restrições para tabelas despejadas

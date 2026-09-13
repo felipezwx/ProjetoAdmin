@@ -212,6 +212,17 @@ if (!isset($_SESSION['usuario'])) {
 
         </div>
 
+        <h2 class="mt-5 mb-4">Ranking de Produtos</h2>
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+
+                <ol id="rankingProdutos">
+                </ol>
+
+            </div>
+        </div>
+
     </div>
 
     </div>
