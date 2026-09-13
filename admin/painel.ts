@@ -1,10 +1,17 @@
+type Produto = {
+    nome: string;
+    categoria: string;
+    preco: string;
+    estoque: string;
+};
+
 var carregarProdutos = async () => {
 
     try {
 
         const resposta = await fetch("api/dados_produtos.php");
 
-        const produtos = await resposta.json();
+        const produtos: Produto[] = await resposta.json();
 
         if (produtos.length == 0) {
             console.log("Nenhum produto encontrado");
@@ -14,13 +21,13 @@ var carregarProdutos = async () => {
         const totalProdutos = produtos.length;
 
         const estoqueBaixo = produtos.filter(
-            (produto: { estoque: string }) => Number(produto.estoque) <= 5
+            (produto: Produto) => Number(produto.estoque) <= 5
         ).length;
 
         const valorTotal = produtos.reduce(
-            (total: number, produto: { preco: string, estoque: string}) => {
+            (total: number, produto: Produto) => {
 
-            return total + (Number(produto.preco) * Number(produto.estoque));
+                return total + (Number(produto.preco) * Number(produto.estoque));
 
             }, 0
         );
@@ -47,26 +54,43 @@ var carregarProdutos = async () => {
         const filtro = document.getElementById("filtroCategoria") as HTMLSelectElement;
 
 
-        function mostrarRelatorio(lista: any[]) {
+        function mostrarRelatorio(lista: Produto[]) {
 
             if (tabela) {
 
-                tabela.innerHTML = "";
+                tabela.textContent = "";
 
-                lista.forEach(produto => {
+                lista.forEach((produto: Produto) => {
 
                     const valorEstoque =
                         Number(produto.preco) * Number(produto.estoque);
 
-                    tabela.innerHTML += `
-                        <tr>
-                            <td>${produto.nome}</td>
-                            <td>${produto.categoria}</td>
-                            <td>R$ ${Number(produto.preco).toFixed(2)}</td>
-                            <td>${produto.estoque}</td>
-                            <td>R$ ${valorEstoque.toFixed(2)}</td>
-                        </tr>
-                    `;
+                    const linha = document.createElement("tr");
+
+                    const colunaNome = document.createElement("td");
+                    colunaNome.textContent = produto.nome;
+
+                    const colunaCategoria = document.createElement("td");
+                    colunaCategoria.textContent = produto.categoria;
+
+                    const colunaPreco = document.createElement("td");
+                    colunaPreco.textContent =
+                        "R$ " + Number(produto.preco).toFixed(2);
+
+                    const colunaEstoque = document.createElement("td");
+                    colunaEstoque.textContent = produto.estoque;
+
+                    const colunaValor = document.createElement("td");
+                    colunaValor.textContent =
+                        "R$ " + valorEstoque.toFixed(2);
+
+                    linha.appendChild(colunaNome);
+                    linha.appendChild(colunaCategoria);
+                    linha.appendChild(colunaPreco);
+                    linha.appendChild(colunaEstoque);
+                    linha.appendChild(colunaValor);
+
+                    tabela.appendChild(linha);
                 });
 
             }
@@ -87,7 +111,7 @@ var carregarProdutos = async () => {
                         "api/dados_produtos.php?categoria=" + encodeURIComponent(categoria)
                     );
 
-                    const produtosFiltrados = await respostaFiltro.json();
+                    const produtosFiltrados: Produto[] = await respostaFiltro.json();
 
                     mostrarRelatorio(produtosFiltrados);
 

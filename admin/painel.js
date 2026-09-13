@@ -28,18 +28,28 @@ var carregarProdutos = async () => {
         const filtro = document.getElementById("filtroCategoria");
         function mostrarRelatorio(lista) {
             if (tabela) {
-                tabela.innerHTML = "";
-                lista.forEach(produto => {
+                tabela.textContent = "";
+                lista.forEach((produto) => {
                     const valorEstoque = Number(produto.preco) * Number(produto.estoque);
-                    tabela.innerHTML += `
-                        <tr>
-                            <td>${produto.nome}</td>
-                            <td>${produto.categoria}</td>
-                            <td>R$ ${Number(produto.preco).toFixed(2)}</td>
-                            <td>${produto.estoque}</td>
-                            <td>R$ ${valorEstoque.toFixed(2)}</td>
-                        </tr>
-                    `;
+                    const linha = document.createElement("tr");
+                    const colunaNome = document.createElement("td");
+                    colunaNome.textContent = produto.nome;
+                    const colunaCategoria = document.createElement("td");
+                    colunaCategoria.textContent = produto.categoria;
+                    const colunaPreco = document.createElement("td");
+                    colunaPreco.textContent =
+                        "R$ " + Number(produto.preco).toFixed(2);
+                    const colunaEstoque = document.createElement("td");
+                    colunaEstoque.textContent = produto.estoque;
+                    const colunaValor = document.createElement("td");
+                    colunaValor.textContent =
+                        "R$ " + valorEstoque.toFixed(2);
+                    linha.appendChild(colunaNome);
+                    linha.appendChild(colunaCategoria);
+                    linha.appendChild(colunaPreco);
+                    linha.appendChild(colunaEstoque);
+                    linha.appendChild(colunaValor);
+                    tabela.appendChild(linha);
                 });
             }
         }
