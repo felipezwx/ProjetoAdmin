@@ -42,7 +42,10 @@ var carregarProdutos = async () => {
             campoTotal.innerText = totalProdutos.toString();
         }
         if (campoValor) {
-            campoValor.innerText = "R$ " + valorTotal.toFixed(2).replace(".", ",");
+            campoValor.innerText = valorTotal.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            });
         }
         if (campoEstoque) {
             campoEstoque.innerText = estoqueBaixo.toString();

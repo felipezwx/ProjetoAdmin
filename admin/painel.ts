@@ -95,7 +95,10 @@ var carregarProdutos = async (): Promise<void> => {
         }
 
         if (campoValor) {
-            campoValor.innerText = "R$ " + valorTotal.toFixed(2).replace(".", ",");
+            campoValor.innerText = valorTotal.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            });
         }
 
         if (campoEstoque) {
