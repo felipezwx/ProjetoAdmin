@@ -185,6 +185,21 @@ if (!isset($_SESSION['usuario'])) {
 
             </select>
 
+            <div class="mt-3">
+
+                <label class="form-label">
+                    Buscar Produto:
+                </label>
+
+                <input
+                    type="text"
+                    id="campoBusca"
+                    class="form-control"
+                    placeholder="Digite o nome do produto"
+                >
+
+            </div>
+
         </div>
     </div>
 
@@ -212,6 +227,24 @@ if (!isset($_SESSION['usuario'])) {
 
         </div>
 
+    </div>
+
+        <div class="d-flex justify-content-between align-items-center mt-3 mb-4">
+
+            <button id="btnAnterior" class="btn btn-secondary">
+                Anterior
+            </button>
+
+            <span id="paginaAtual">
+                Página 1
+            </span>
+
+            <button id="btnProxima" class="btn btn-dark">
+                Próxima
+            </button>
+
+        </div>
+
         <h2 class="mt-5 mb-4">Ranking de Produtos</h2>
 
         <div class="card shadow-sm">
@@ -220,7 +253,6 @@ if (!isset($_SESSION['usuario'])) {
                 <ol id="rankingProdutos">
                 </ol>
 
-            </div>
         </div>
 
     </div>

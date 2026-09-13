@@ -1,5 +1,5 @@
 type Produto = {
-    id_produtos: string;
+    id_produto: string;
     nome: string;
     categoria: string;
     preco: string;
@@ -7,7 +7,7 @@ type Produto = {
     valor_estoque: string;
 };
 
-var carregarProdutos = async () => {
+var carregarProdutos = async (): Promise<void> => {
 
     try {
 
@@ -48,23 +48,34 @@ var carregarProdutos = async () => {
             }
         );
 
+        const rankingFormatado = rankingProdutos.slice(0, 5).map(
+            (produto: Produto) => {
+
+                const valorEstoque =
+                    Number(produto.preco) * Number(produto.estoque);
+
+                return {
+                    nome: produto.nome,
+                    valor: valorEstoque
+                };
+
+            }
+        );
+
         const campoRanking = document.getElementById("rankingProdutos");
 
         if (campoRanking) {
 
             campoRanking.textContent = "";
 
-            rankingProdutos.slice(0, 5).forEach((produto: Produto) => {
-
-                const valorEstoque =
-                    Number(produto.preco) * Number(produto.estoque);
+            rankingFormatado.forEach((produto) => {
 
                 const item = document.createElement("li");
 
                 item.textContent =
                     produto.nome +
                     " - R$ " +
-                    valorEstoque.toFixed(2).replace(".", ",");
+                    produto.valor.toFixed(2).replace(".", ",");
 
                 campoRanking.appendChild(item);
 
@@ -95,8 +106,17 @@ var carregarProdutos = async () => {
 
         const filtro = document.getElementById("filtroCategoria") as HTMLSelectElement;
 
+        const campoBusca = document.getElementById("campoBusca") as HTMLInputElement;
 
-        function mostrarRelatorio(lista: Produto[]) {
+        const btnAnterior = document.getElementById("btnAnterior") as HTMLButtonElement;
+        const btnProxima = document.getElementById("btnProxima") as HTMLButtonElement;
+        const paginaAtual = document.getElementById("paginaAtual");
+
+        let pagina = 1;
+        const limite = 10;
+
+
+        function mostrarRelatorio(lista: Produto[]): void {
 
             if (tabela) {
 
@@ -153,29 +173,94 @@ var carregarProdutos = async () => {
 
         }
 
-        mostrarRelatorio(produtos);
+        async function carregarRelatorio(): Promise<void> {
+
+            const categoria = filtro ? filtro.value : "todos";
+
+            const busca = campoBusca ? campoBusca.value : "";
+
+            const offset = (pagina - 1) * limite;
+
+            try {
+
+                const respostaRelatorio = await fetch(
+                    "api/dados_produtos.php?categoria=" +
+                    encodeURIComponent(categoria) +
+                    "&busca=" +
+                    encodeURIComponent(busca) +
+                    "&limite=" +
+                    limite +
+                    "&offset=" +
+                    offset
+                );
+
+                const lista: Produto[] = await respostaRelatorio.json();
+
+                mostrarRelatorio(lista);
+
+                if (paginaAtual) {
+                    paginaAtual.textContent = "Página " + pagina;
+                }
+
+                if (btnAnterior) {
+                    btnAnterior.disabled = pagina == 1;
+                }
+
+                if (btnProxima) {
+                    btnProxima.disabled = lista.length < limite;
+                }
+
+            } catch (erro) {
+
+                console.log("Erro ao carregar relatório");
+
+            }
+
+        }
+
+        carregarRelatorio();
 
         if (filtro) {
 
-            filtro.addEventListener("change", async () => {
+            filtro.addEventListener("change", () => {
 
-                const categoria = filtro.value;
+                pagina = 1;
+                carregarRelatorio();
 
-                try {
+            });
 
-                    const respostaFiltro = await fetch(
-                        "api/dados_produtos.php?categoria=" + encodeURIComponent(categoria)
-                    );
+        }
 
-                    const produtosFiltrados: Produto[] = await respostaFiltro.json();
+        if (campoBusca) {
 
-                    mostrarRelatorio(produtosFiltrados);
+            campoBusca.addEventListener("input", () => {
 
-                } catch (erro) {
+                pagina = 1;
+                carregarRelatorio();
 
-                    console.log("Erro ao filtrar produtos");
+            });
 
+        }
+
+        if (btnAnterior) {
+
+            btnAnterior.addEventListener("click", () => {
+
+                if (pagina > 1) {
+                    pagina--;
+                    carregarRelatorio();
                 }
+
+            });
+
+        }
+
+        if (btnProxima) {
+
+            btnProxima.addEventListener("click", () => {
+
+                pagina++;
+                carregarRelatorio();
 
             });
 

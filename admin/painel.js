@@ -15,16 +15,22 @@ var carregarProdutos = async () => {
             const valorB = Number(b.preco) * Number(b.estoque);
             return valorB - valorA;
         });
+        const rankingFormatado = rankingProdutos.slice(0, 5).map((produto) => {
+            const valorEstoque = Number(produto.preco) * Number(produto.estoque);
+            return {
+                nome: produto.nome,
+                valor: valorEstoque
+            };
+        });
         const campoRanking = document.getElementById("rankingProdutos");
         if (campoRanking) {
             campoRanking.textContent = "";
-            rankingProdutos.slice(0, 5).forEach((produto) => {
-                const valorEstoque = Number(produto.preco) * Number(produto.estoque);
+            rankingFormatado.forEach((produto) => {
                 const item = document.createElement("li");
                 item.textContent =
                     produto.nome +
                         " - R$ " +
-                        valorEstoque.toFixed(2).replace(".", ",");
+                        produto.valor.toFixed(2).replace(".", ",");
                 campoRanking.appendChild(item);
             });
         }
@@ -43,6 +49,12 @@ var carregarProdutos = async () => {
         }
         const tabela = document.getElementById("tabelaRelatorio");
         const filtro = document.getElementById("filtroCategoria");
+        const campoBusca = document.getElementById("campoBusca");
+        const btnAnterior = document.getElementById("btnAnterior");
+        const btnProxima = document.getElementById("btnProxima");
+        const paginaAtual = document.getElementById("paginaAtual");
+        let pagina = 1;
+        const limite = 10;
         function mostrarRelatorio(lista) {
             if (tabela) {
                 tabela.textContent = "";
@@ -79,18 +91,60 @@ var carregarProdutos = async () => {
                 });
             }
         }
-        mostrarRelatorio(produtos);
+        async function carregarRelatorio() {
+            const categoria = filtro ? filtro.value : "todos";
+            const busca = campoBusca ? campoBusca.value : "";
+            const offset = (pagina - 1) * limite;
+            try {
+                const respostaRelatorio = await fetch("api/dados_produtos.php?categoria=" +
+                    encodeURIComponent(categoria) +
+                    "&busca=" +
+                    encodeURIComponent(busca) +
+                    "&limite=" +
+                    limite +
+                    "&offset=" +
+                    offset);
+                const lista = await respostaRelatorio.json();
+                mostrarRelatorio(lista);
+                if (paginaAtual) {
+                    paginaAtual.textContent = "Página " + pagina;
+                }
+                if (btnAnterior) {
+                    btnAnterior.disabled = pagina == 1;
+                }
+                if (btnProxima) {
+                    btnProxima.disabled = lista.length < limite;
+                }
+            }
+            catch (erro) {
+                console.log("Erro ao carregar relatório");
+            }
+        }
+        carregarRelatorio();
         if (filtro) {
-            filtro.addEventListener("change", async () => {
-                const categoria = filtro.value;
-                try {
-                    const respostaFiltro = await fetch("api/dados_produtos.php?categoria=" + encodeURIComponent(categoria));
-                    const produtosFiltrados = await respostaFiltro.json();
-                    mostrarRelatorio(produtosFiltrados);
+            filtro.addEventListener("change", () => {
+                pagina = 1;
+                carregarRelatorio();
+            });
+        }
+        if (campoBusca) {
+            campoBusca.addEventListener("input", () => {
+                pagina = 1;
+                carregarRelatorio();
+            });
+        }
+        if (btnAnterior) {
+            btnAnterior.addEventListener("click", () => {
+                if (pagina > 1) {
+                    pagina--;
+                    carregarRelatorio();
                 }
-                catch (erro) {
-                    console.log("Erro ao filtrar produtos");
-                }
+            });
+        }
+        if (btnProxima) {
+            btnProxima.addEventListener("click", () => {
+                pagina++;
+                carregarRelatorio();
             });
         }
         console.log("Valor total do estoque:", valorTotal);
